@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EventsApi.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,6 +28,7 @@ namespace EventsApi
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddScoped<IEventServices, EventServices>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

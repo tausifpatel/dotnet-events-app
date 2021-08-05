@@ -14,8 +14,8 @@ namespace EventsApi.Data
         {
             var events = new List<Event>
             {
-                new Event{Name = "NextJs", Location = "London"},
-                new Event{Name = "ReactJs", Location = "Manchester"}
+                new Event{Id="01", Name = "NextJs", Location = "London"},
+                new Event{Id="02", Name = "ReactJs", Location = "Manchester"}
             };
             return events;
         }
