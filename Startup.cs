@@ -29,6 +29,7 @@ namespace EventsApi
         {
 
             services.AddScoped<IEventServices, EventServices>();
+            services.Configure<EventDBConfig>(Configuration);
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
