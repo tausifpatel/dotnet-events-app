@@ -1,23 +1,33 @@
 using System.Collections.Generic;
 using EventsApi.Models;
+using MongoDB.Driver;
 
 namespace EventsApi.Data
 {
     public class EventServices : IEventServices
     {
+        private readonly IMongoCollection<Event> _events;
+
+        // Constructor
+        public EventServices(IDBClient DBClient)
+        {
+            _events = DBClient.getEventsCollection();
+        }
+
+        public Event AddEvent(Event evnt)
+        {
+            _events.InsertOne(evnt);
+            return evnt;
+        }
+
         public Event GetEvent(string id)
         {
-            return new Event{Name = "NextJs", Location = "London"};
+            return _events.Find(evnt => evnt.Id == id).First();
         }
 
         public List<Event> GetEvents()
         {
-            var events = new List<Event>
-            {
-                new Event{Id="01", Name = "NextJs", Location = "London"},
-                new Event{Id="02", Name = "ReactJs", Location = "Manchester"}
-            };
-            return events;
+            return _events.Find(evnt => true).ToList();
         }
     }
 }

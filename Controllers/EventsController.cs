@@ -1,4 +1,5 @@
 using EventsApi.Data;
+using EventsApi.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventsApi.Controllers
@@ -15,15 +16,21 @@ namespace EventsApi.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetBooks()
+        public ActionResult GetEvents()
         {
             return Ok(_eventServices.GetEvents());
         }
 
         [HttpGet("{id}")]
-        public ActionResult getBook(string id)
+        public ActionResult GetEent(string id)
         {
             return Ok(_eventServices.GetEvent(id));
+        }
+
+        [HttpPost]
+        public ActionResult AddEvent(Event evnt)
+        {
+            return Ok(_eventServices.AddEvent(evnt));
         }
     }
 }

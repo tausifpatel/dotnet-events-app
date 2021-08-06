@@ -7,5 +7,6 @@ namespace EventsApi.Data
     {
         List<Event> GetEvents();
         Event GetEvent(string id);
+        Event AddEvent(Event evnt);
     }
 }
